@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  service-parser:
+    build: ./service-parser
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./service-parser:/app
+    restart: always
+    # depends_on:
+      # - grpc-database
+
+  service-saver:
+    build: ./service-saver
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./service-saver:/app
+    restart: always
+    depends_on:
+      - service-parser
+
+  # grpc-database:
+  #   image: mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #   ports:
+  #     - "3306:3306"

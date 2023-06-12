@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package products;
+
+service Products {
+    rpc SendProduct (SendProductRequest) returns (stream SendProductResponse);
+}
+
+
+message Product {
+    string name = 1;
+    string articul = 2;
+    string price = 3;
+    string description = 4;
+}
+
+message SendProductRequest {}
+
+message SendProductResponse {
+    repeated Product products = 1;
+}
+
